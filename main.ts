@@ -9,10 +9,12 @@ import {
 // TweetNaCl is a cryptography library that we use to verify requests
 // from Discord.
 import nacl from "https://cdn.skypack.dev/tweetnacl@v1.0.3?dts";
+import {registerCommands} from './register_commands.ts';
 
 // For all requests to "/" endpoint, we want to invoke home() handler.
 serve({
   "/": home,
+  "/register": register,
 });
 
 // The main logic of the Discord Slash Command is defined in this function.
@@ -67,6 +69,19 @@ async function home(request: Request) {
   // We will return a bad request error as a valid Discord request
   // shouldn't reach here.
   return json({ error: "bad request" }, { status: 400 });
+}
+
+async function register() {
+  console.log('Registering Commands');
+  const res = await registerCommands();
+  const j = await res.json();
+  if (!res.ok) {
+    console.log('Registering failed');
+    return json(j, {status: 400});
+  } else {
+    console.log('Registering succeded');
+    return json(j, {status: 200});
+  }
 }
 
 /** Verify whether the request is coming from Discord. */
