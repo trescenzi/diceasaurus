@@ -10,18 +10,20 @@ export function registerCommands() {
       'Content-Type': 'application/json',
       'Authorization': `Bot ${BOT_TOKEN}`,
     },
-    body: JSON.stringify({
-      name: 'r',
-      type: 1,
-      description: 'Roll dice',
-      options: [
-        {
+    body: JSON.stringify([
+      {
+        name: 'r',
+        type: 1,
+        description: 'Roll dice',
+        options: [
+          {
             name: "Dice",
             "description": "The dice to roll or 'help' for help.",
             "type": 3,
             "required": true
-        },
-      ],
-    }),
+          },
+        ],
+      }
+    ]),
   });
 }
