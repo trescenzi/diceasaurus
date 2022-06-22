@@ -17,7 +17,7 @@ export function registerCommands() {
         description: 'Roll dice',
         options: [
           {
-            name: "Dice",
+            name: "dice",
             "description": "The dice to roll or 'help' for help.",
             "type": 3,
             "required": true
