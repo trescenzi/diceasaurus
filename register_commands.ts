@@ -5,7 +5,7 @@ const url = `https://discord.com/api/v10/applications/${APP_ID}/commands`;
 
 export function registerCommands() {
   return fetch(url, {
-    method: 'POST',
+    method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
       'Authorization': `Bot ${BOT_TOKEN}`,
@@ -16,7 +16,7 @@ export function registerCommands() {
       description: 'Roll dice',
       options: [
         {
-            name: "dice",
+            name: "Dice",
             "description": "The dice to roll or 'help' for help.",
             "type": 3,
             "required": true
