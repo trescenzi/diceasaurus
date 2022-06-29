@@ -9,6 +9,7 @@ import {
 // TweetNaCl is a cryptography library that we use to verify requests
 // from Discord.
 import nacl from "https://cdn.skypack.dev/tweetnacl@v1.0.3?dts";
+import { DiceRoll } from 'https://cdn.skypack.dev/@dice-roller/rpg-dice-roller';
 import {registerCommands} from './register_commands.ts';
 
 // For all requests to "/" endpoint, we want to invoke home() handler.
@@ -55,13 +56,14 @@ async function home(request: Request) {
   // Type 2 in a request is an ApplicationCommand interaction.
   // It implies that a user has issued a command.
   if (type === 2) {
-    const { value } = data.options.find((option) => option.name === "name");
+    const { value } = data.options.find((option) => option.name === "dice");
+    const roll = new DiceRoll(value);
     return json({
       // Type 4 responds with the below message retaining the user's
       // input at the top.
       type: 4,
       data: {
-        content: `Hello, ${value}!`,
+        content: `${roll.output}`,
       },
     });
   }
