@@ -33,14 +33,14 @@ export async function verifyAndValidateRequest(request: Request) {
   if (error) {
     return {
       error: [{ error: error.message }, { status: error.status }],
-    }
+    };
   }
 
   const { valid, body } = await verifySignature(request);
   if (!valid) {
     return {
-      error: [ { error: "Invalid request" }, { status: 401, }]
-    }
+      error: [{ error: "Invalid request" }, { status: 401 }],
+    };
   }
-  return { body }
+  return { body };
 }

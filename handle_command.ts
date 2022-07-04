@@ -1,7 +1,7 @@
 type CommandType = {
   value: string;
   name: string;
-}
+};
 
 type Commands = CommandType[];
 
@@ -11,11 +11,11 @@ type InteractionData<T extends Commands> = {
   id: string;
 };
 
-type Options<T extends Commands> = { 
+type Options<T extends Commands> = {
   [K in keyof T]: {
     value: T[K]["value"];
     name: T[K]["name"];
-  }
+  };
 };
 
 type Interaction<T extends Commands> = {
@@ -28,7 +28,7 @@ type Interaction<T extends Commands> = {
       avatar: string;
       discriminator: string;
       public_flags: number;
-    },
+    };
     roles: string[];
     premium_since: string;
     permissions: string;
@@ -38,7 +38,7 @@ type Interaction<T extends Commands> = {
     is_pending: string;
     deaf: boolean;
     mute: boolean;
-  },
+  };
   id: string;
   guild_id: string;
   app_permissions: string;
@@ -59,14 +59,14 @@ type ResponseData = {
   tts?: boolean;
   content?: string;
   // TODO there's more here
-}
+};
 
 type CommandResponse = {
   data?: ResponseData;
   type: ResponseType;
-}
+};
 
 export type SlashCommand<T extends Commands> = {
   name: string;
-  handler: (options: Options<T>) => CommandResponse
-}
+  handler: (options: Options<T>) => CommandResponse;
+};
